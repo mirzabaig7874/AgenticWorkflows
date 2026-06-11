@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Junk Mail Report – Portfolio Card</title>
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 min-h-screen flex items-center justify-center p-6">
+
+  <!-- Portfolio Card -->
+  <div class="project-card w-full max-w-3xl">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="flex items-start justify-between flex-wrap gap-3">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="bot-emoji">🗑️</span>
+            <h2 class="project-title">Junk Mail Report</h2>
+          </div>
+          <p class="project-tagline">Scheduled digest that reads a junk email log, sends an HTML report, then resets the sheet</p>
+        </div>
+        <div class="flex flex-col gap-2 items-end">
+          <span class="badge badge-schedule">⏱️ Every 5 hrs</span>
+          <span class="badge badge-ai">✨ AI Formatter</span>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-4">
+        <span class="tag">Google Sheets</span>
+        <span class="tag">Gmail</span>
+        <span class="tag">AI Formatting</span>
+        <span class="tag">Conditional Logic</span>
+        <span class="tag">Scheduled Trigger</span>
+        <span class="tag">HTML Email</span>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="section-block">
+      <h3 class="section-title">Overview</h3>
+      <p class="section-text">
+        Every 5 hours, this flow checks a Google Sheet that logs junk emails from the <strong>Inbox Cleaner</strong> workflow. If there's data, it formats the entries into a clean <strong>AI-generated HTML table</strong>, emails you a report, then wipes the sheet clean — ready for the next batch.
+      </p>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="section-block">
+      <h3 class="section-title">How It Works</h3>
+      <div class="diagram-container">
+
+        <!-- Trigger -->
+        <div class="d-row">
+          <div class="node node-trigger">
+            <span class="node-icon">⏱️</span>
+            <span class="node-label">Scheduled Trigger</span>
+            <span class="node-sub">Runs automatically every 5 hours</span>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <!-- Count rows + URL (side by side) -->
+        <div class="d-row d-row-pair">
+          <div class="node node-sheet">
+            <span class="node-icon">🔢</span>
+            <span class="node-label">Count Sheet Rows</span>
+            <span class="node-sub">Checks how many junk entries are logged</span>
+          </div>
+          <div class="node node-const">
+            <span class="node-icon">🔗</span>
+            <span class="node-label">Sheet URL</span>
+            <span class="node-sub">Constant — passed into router</span>
+          </div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <!-- Router / Gate -->
+        <div class="d-row">
+          <div class="node node-router">
+            <span class="node-icon">🔀</span>
+            <span class="node-label">Router: Is Sheet Empty?</span>
+            <span class="node-sub">Checks row count and decides which path to take</span>
+          </div>
+        </div>
+
+        <!-- Gate branches -->
+        <div class="gate-row">
+          <!-- Stop branch -->
+          <div class="gate-branch gate-stop">
+            <div class="gate-arrow">↙</div>
+            <div class="gate-label stop-label">Rows = 0</div>
+            <div class="node node-stop">
+              <span class="node-icon">🛑</span>
+              <span class="node-label">Stop</span>
+              <span class="node-sub">Sheet is empty — flow exits</span>
+            </div>
+          </div>
+
+          <!-- Continue branch -->
+          <div class="gate-branch gate-continue">
+            <div class="gate-arrow">↘</div>
+            <div class="gate-label continue-label">Rows &gt; 0</div>
+
+            <!-- Pipeline steps -->
+            <div class="pipeline">
+              <div class="node node-read">
+                <span class="node-icon">📋</span>
+                <span class="node-label">Read Sheet Data</span>
+                <span class="node-sub">Pulls Subject, Sender, Date columns</span>
+              </div>
+              <div class="pipe-arrow">↓</div>
+              <div class="node node-format">
+                <span class="node-icon">🔧</span>
+                <span class="node-label">Structure Rows</span>
+                <span class="node-sub">📧 Subject · 👤 Sender · 📅 Date per row</span>
+              </div>
+              <div class="pipe-arrow">↓</div>
+              <div class="node node-join">
+                <span class="node-icon">🔗</span>
+                <span class="node-label">Join All Rows</span>
+                <span class="node-sub">Combines into a single text block</span>
+              </div>
+              <div class="pipe-arrow">↓</div>
+              <div class="node node-ai">
+                <span class="node-icon">🤖</span>
+                <span class="node-label">AI → HTML Table</span>
+                <span class="node-sub">Formats text into a clean HTML table</span>
+              </div>
+              <div class="pipe-arrow">↓</div>
+              <div class="node node-email">
+                <span class="node-icon">📧</span>
+                <span class="node-label">Send Email Report</span>
+                <span class="node-sub">"🗑️ Junk Mail Report — Last 5 Hours"</span>
+              </div>
+              <div class="pipe-arrow">↓</div>
+              <div class="node node-clear">
+                <span class="node-icon">🧹</span>
+                <span class="node-label">Clear Sheet</span>
+                <span class="node-sub">Wipes rows — ready for next batch</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Step Details -->
+    <div class="section-block">
+      <h3 class="section-title">Step-by-Step Breakdown</h3>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num step-gray">1–2</div>
+          <div>
+            <div class="step-title">Count Rows + Sheet URL</div>
+            <div class="step-desc">Reads the row count from the junk email Google Sheet and stores the sheet URL as a reusable constant — both feed into the router.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-amber">3</div>
+          <div>
+            <div class="step-title">Conditional Router</div>
+            <div class="step-desc">If row count is 0 → flow stops (nothing to report). If rows exist → continues to read and process the data.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-blue">4–6</div>
+          <div>
+            <div class="step-title">Read, Structure & Join</div>
+            <div class="step-desc">Reads the sheet (Subject, Sender, Date), formats each row into a readable string, then joins all rows into a single text block.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-purple">7</div>
+          <div>
+            <div class="step-title">AI → HTML Table</div>
+            <div class="step-desc">AI converts the plain-text row block into a polished HTML table with Sender, Subject, and Date columns — ready to embed in an email.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-green">8</div>
+          <div>
+            <div class="step-title">Email the Report</div>
+            <div class="step-desc">Sends the formatted HTML table to mirza.asad.baig@gmail.com with subject "🗑️ Junk Mail Report — Last 5 Hours".</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-red">9</div>
+          <div>
+            <div class="step-title">Clear the Sheet</div>
+            <div class="step-desc">Wipes all rows from the Google Sheet after sending — resetting it for the next 5-hour cycle.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pair note -->
+    <div class="pair-note-block">
+      <div class="pair-note">
+        <span class="pair-icon">🔁</span>
+        <span class="pair-text">Works in tandem with <strong>Inbox Cleaner</strong> — that flow logs junk emails to the sheet; this flow reports and resets it every 5 hours.</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <div class="flex flex-wrap gap-4 items-center justify-between">
+        <span class="footer-note">Built with Gumloop · AI Agent Automation</span>
+        <div class="flex gap-3">
+          <span class="stat">⏱️ Runs every 5 hours</span>
+          <span class="stat">🧹 Auto-resets sheet</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
