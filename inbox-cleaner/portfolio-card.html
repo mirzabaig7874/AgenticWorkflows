@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inbox Cleaner – Portfolio Card</title>
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 min-h-screen flex items-center justify-center p-6">
+
+  <!-- Portfolio Card -->
+  <div class="project-card w-full max-w-3xl">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="flex items-start justify-between flex-wrap gap-3">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="bot-emoji">📧</span>
+            <h2 class="project-title">Inbox Cleaner</h2>
+          </div>
+          <p class="project-tagline">AI-powered email classifier that auto-trashes junk & logs it to a spreadsheet</p>
+        </div>
+        <div class="flex flex-col gap-2 items-end">
+          <span class="badge badge-gmail">📬 Gmail</span>
+          <span class="badge badge-ai">✨ AI Router</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mt-4">
+        <span class="tag">Email Automation</span>
+        <span class="tag">AI Classification</span>
+        <span class="tag">Gmail</span>
+        <span class="tag">Google Sheets</span>
+        <span class="tag">Spam Detection</span>
+        <span class="tag">Bulk Actions</span>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="section-block">
+      <h3 class="section-title">Overview</h3>
+      <p class="section-text">
+        Inbox Cleaner reads your last <strong>50 Gmail messages</strong>, runs each through an <strong>AI classifier</strong> that distinguishes spam, phishing, and promotions from legitimate mail, then automatically moves junk to Trash — while simultaneously logging every trashed email to a Google Sheet for your records.
+      </p>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="section-block">
+      <h3 class="section-title">How It Works</h3>
+      <div class="diagram-container">
+
+        <!-- Step 1: Gmail Reader -->
+        <div class="diagram-row">
+          <div class="node node-trigger">
+            <span class="node-icon">📬</span>
+            <span class="node-label">Gmail Reader</span>
+            <span class="node-sub">Reads last 50 inbox emails · extracts subject, sender, body, date, ID</span>
+          </div>
+        </div>
+
+        <div class="arrow-down">↓</div>
+
+        <!-- Step 2: AI Classifier -->
+        <div class="diagram-row">
+          <div class="node node-classifier">
+            <span class="node-icon">🤖</span>
+            <span class="node-label">AI Junk Classifier</span>
+            <span class="node-sub">Analyses urgency tactics · suspicious senders · grammar · prize scams · trusted contacts</span>
+          </div>
+        </div>
+
+        <!-- Branch label -->
+        <div class="branch-label-row">
+          <span class="branch-indicator">Routes each email to one of two paths</span>
+        </div>
+
+        <!-- Fork lines -->
+        <div class="fork-container">
+          <div class="fork-line-left"></div>
+          <div class="fork-line-right"></div>
+        </div>
+
+        <!-- Step 3: Two branches -->
+        <div class="branch-row">
+          <!-- Junk Branch -->
+          <div class="branch-col">
+            <div class="branch-header junk-header">🗑️ Junk</div>
+            <div class="branch-steps">
+              <div class="node node-junk">
+                <span class="node-icon">🗑️</span>
+                <span class="node-label">Bulk Trash</span>
+                <span class="node-sub">Moves all junk emails to Gmail Trash using sender + subject</span>
+              </div>
+              <div class="parallel-split-label">simultaneously</div>
+              <div class="node node-log">
+                <span class="node-icon">📊</span>
+                <span class="node-label">Log to Google Sheet</span>
+                <span class="node-sub">Subject · Sender · Date logged as a permanent record</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="branch-divider"></div>
+
+          <!-- Legitimate Branch -->
+          <div class="branch-col">
+            <div class="branch-header legit-header">✅ Legitimate</div>
+            <div class="branch-steps">
+              <div class="node node-legit">
+                <span class="node-icon">✅</span>
+                <span class="node-label">Left Untouched</span>
+                <span class="node-sub">Receipts, confirmations, personal & professional emails stay in inbox</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Step Details -->
+    <div class="section-block">
+      <h3 class="section-title">Step-by-Step Breakdown</h3>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num step-blue">1</div>
+          <div>
+            <div class="step-title">Gmail Reader</div>
+            <div class="step-desc">Fetches the 50 most recent inbox emails, extracting subject, sender, body, date, and message ID for processing.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-purple">2</div>
+          <div>
+            <div class="step-title">AI Junk Classifier (Router)</div>
+            <div class="step-desc">Each email is scored by AI against spam signals — urgency language, suspicious domains, grammar issues, prize scams — and routed to Junk or Legitimate.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-red">3</div>
+          <div>
+            <div class="step-title">Bulk Trash (Junk Route)</div>
+            <div class="step-desc">All junk emails are moved to Gmail Trash in bulk using their sender addresses and subjects.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num step-green">4</div>
+          <div>
+            <div class="step-title">Log to Google Sheets (Simultaneous)</div>
+            <div class="step-desc">In parallel with trashing, every junk email is logged to a Google Sheet — Subject, Sender, Date — creating a full audit trail.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <div class="flex flex-wrap gap-4 items-center justify-between">
+        <span class="footer-note">Built with Gumloop · AI Agent Automation</span>
+        <div class="flex gap-3">
+          <span class="stat">🧹 Cleans 50 emails per run</span>
+          <span class="stat">📋 Full audit log</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
