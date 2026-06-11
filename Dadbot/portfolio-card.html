@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DadBot – Portfolio Card</title>
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 min-h-screen flex items-center justify-center p-6">
+
+  <!-- Portfolio Card -->
+  <div class="project-card w-full max-w-3xl">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="flex items-start justify-between flex-wrap gap-3">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="bot-emoji">🤖</span>
+            <h2 class="project-title">DadBot</h2>
+          </div>
+          <p class="project-tagline">Automated weekly digest that curates & emails personalized content to a 13-year-old</p>
+        </div>
+        <div class="flex flex-col gap-2 items-end">
+          <span class="badge badge-weekly">⏰ Weekly</span>
+          <span class="badge badge-ai">✨ 5 AI Agents</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mt-4">
+        <span class="tag">AI Agents</span>
+        <span class="tag">Web Search</span>
+        <span class="tag">Email Automation</span>
+        <span class="tag">Parallel Execution</span>
+        <span class="tag">HTML Email</span>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="section-block">
+      <h3 class="section-title">Overview</h3>
+      <p class="section-text">
+        DadBot runs <strong>5 AI agents in parallel</strong> every week — 4 specialized content curator bots scour the web simultaneously, then a final aggregator bot picks the best from each and formats everything into a beautiful HTML email digest delivered straight to the inbox.
+      </p>
+    </div>
+
+    <!-- Flow Diagram -->
+    <div class="section-block">
+      <h3 class="section-title">How It Works</h3>
+      <div class="diagram-container">
+
+        <!-- Step 1: Trigger -->
+        <div class="diagram-row">
+          <div class="node node-trigger">
+            <span class="node-icon">📅</span>
+            <span class="node-label">Weekly Schedule</span>
+            <span class="node-sub">Trigger</span>
+          </div>
+        </div>
+
+        <div class="arrow-down">↓</div>
+        <div class="parallel-label">Runs 4 bots simultaneously</div>
+
+        <!-- Step 2: Parallel Bots -->
+        <div class="diagram-row diagram-row-parallel">
+          <div class="node node-bot">
+            <span class="node-icon">🔬</span>
+            <span class="node-label">ScienceBot</span>
+            <span class="node-sub">3 science topics for 8th graders</span>
+          </div>
+          <div class="node node-bot">
+            <span class="node-icon">💡</span>
+            <span class="node-label">InspireBot</span>
+            <span class="node-sub">3 life lessons & quotes</span>
+          </div>
+          <div class="node node-bot">
+            <span class="node-icon">😄</span>
+            <span class="node-label">JokeBot</span>
+            <span class="node-sub">3 age-appropriate dad jokes</span>
+          </div>
+          <div class="node node-bot">
+            <span class="node-icon">🌟</span>
+            <span class="node-label">GoodNewsBot</span>
+            <span class="node-sub">3 uplifting news stories</span>
+          </div>
+        </div>
+
+        <!-- Converging arrows -->
+        <div class="converge-row">
+          <div class="converge-line"></div>
+        </div>
+        <div class="arrow-down">↓</div>
+
+        <!-- Step 3: Aggregator -->
+        <div class="diagram-row">
+          <div class="node node-aggregator">
+            <span class="node-icon">🧩</span>
+            <span class="node-label">AggregatorBot</span>
+            <span class="node-sub">Picks 1 best from each · Builds HTML email</span>
+          </div>
+        </div>
+
+        <div class="arrow-down">↓</div>
+
+        <!-- Step 4: Output -->
+        <div class="diagram-row">
+          <div class="node node-output">
+            <span class="node-icon">📧</span>
+            <span class="node-label">"DadBot Weekly Digest"</span>
+            <span class="node-sub">Delivered to inbox every week</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bot Details -->
+    <div class="section-block">
+      <h3 class="section-title">The 4 Content Curator Bots</h3>
+      <div class="bot-grid">
+        <div class="bot-card">
+          <div class="bot-icon">🔬</div>
+          <div>
+            <div class="bot-name">ScienceBot</div>
+            <div class="bot-desc">Searches the web for 3 recent science topics — engaging for 8th graders (videos, articles, comics)</div>
+          </div>
+        </div>
+        <div class="bot-card">
+          <div class="bot-icon">💡</div>
+          <div>
+            <div class="bot-name">InspireBot</div>
+            <div class="bot-desc">Finds 3 recent inspirational life lessons or quotes to build character, curiosity & resilience</div>
+          </div>
+        </div>
+        <div class="bot-card">
+          <div class="bot-icon">😄</div>
+          <div>
+            <div class="bot-name">JokeBot</div>
+            <div class="bot-desc">Searches for 3 recent dad jokes appropriate for a 13-year-old, prioritizing comics & pictures</div>
+          </div>
+        </div>
+        <div class="bot-card">
+          <div class="bot-icon">🌟</div>
+          <div>
+            <div class="bot-name">GoodNewsBot</div>
+            <div class="bot-desc">Curates 3 uplifting stories from the past week — kindness, breakthroughs, animal rescues, positive news</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <div class="flex flex-wrap gap-4 items-center justify-between">
+        <span class="footer-note">Built with Gumloop · AI Agent Automation</span>
+        <div class="flex gap-3">
+          <span class="stat">⚡ Parallel execution</span>
+          <span class="stat">📬 Auto-delivered weekly</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
